@@ -1,10 +1,10 @@
-package y2024;
+package y2024.day2;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-public class day2 {
+public class day2p2 {
     private static ArrayList<String> readInput() {
         ArrayList<String> ret = new ArrayList<>();
         try(BufferedReader br = new BufferedReader(new FileReader("./src/y2024/inputs/inputDay2.txt"))) {
@@ -43,16 +43,6 @@ public class day2 {
         return true;
     }
 
-    public static int p1() {
-        ArrayList<String> input = readInput();
-        int sum = 0;
-        for (int i = 0; i < input.size(); i++) {
-            int[] report = convertToReport(input.get(i));
-            if (checkForSafe(report)) { sum++; }
-        }
-        return sum;
-    }
-
     private static boolean checkForSafe2(int[] report) {
         for (int indexToSkip = 0; indexToSkip < report.length; indexToSkip++) {
             int[] newReport = new int[report.length-1];
@@ -67,7 +57,7 @@ public class day2 {
         return false;
     }
 
-    public static int p2() {
+    public static int solution() {
         ArrayList<String> input = readInput();
         int sum = 0;
         for (int i = 0; i < input.size(); i++) {
