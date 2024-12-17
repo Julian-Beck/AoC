@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 
-public class day12p1 {
+public class y2024day12p1 {
     private static ArrayList<ArrayList<Character>> garden;
     private static void readInput(){
         garden = new ArrayList<ArrayList<Character>>();

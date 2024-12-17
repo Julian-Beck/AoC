@@ -1,11 +1,7 @@
-import y2024.day1.day1p1;
-import y2024.day1.day1p2;
-import y2024.day2.day2p1;
-import y2024.day2.day2p2;
-import y2024.day11.day11p1;
-import y2024.day11.day11p2;
-import y2024.day12.day12p1;
-import y2024.day12.day12p2;
+import y2015.day1.y2015day1p1;
+import y2015.day1.y2015day1p2;
+import y2024.day1.y2024day1p1;
+import y2024.day12.y2024day12p2;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,7 +9,7 @@ public class Main {
         long startTime = System.nanoTime();
 
         // Define the day
-        String result1 = String.valueOf(day12p1.solution());
+        String result1 = String.valueOf(y2015day1p1.solution());
 
         long endTime = System.nanoTime();
         long duration1 = (endTime - startTime) / 1_000_000;
@@ -22,7 +18,7 @@ public class Main {
         startTime = System.nanoTime();
 
         // Define the day
-        String result2 = String.valueOf(day12p2.solution());
+        String result2 = String.valueOf(y2015day1p2.solution());
 
         endTime = System.nanoTime();
         long duration2 = (endTime - startTime) / 1_000_000;

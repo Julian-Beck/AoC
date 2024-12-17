@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-public class day1p1 {
+public class y2024day1p2 {
     private static ArrayList<String> readInput() {
         ArrayList<String> ret = new ArrayList<>();
         try(BufferedReader br = new BufferedReader(new FileReader("./src/y2024/inputs/inputDay1.txt"))) {
@@ -30,6 +30,16 @@ public class day1p1 {
         return lowest;
     }
 
+    private static int count_occ(int num, ArrayList<Integer> list){
+        int count = 0;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) == num) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public static int solution() {
         ArrayList<String> input = readInput();
         ArrayList<Integer> first = new ArrayList<Integer>();
@@ -42,14 +52,10 @@ public class day1p1 {
 
         int limit = first.size();
         int sum = 0;
-        for (int i = 0; i < limit; i++) {
-            int firstLow = lowest(first);
-            int secondLow = lowest(second);
-
-            sum+= Math.abs(firstLow - secondLow);
-
-            first.remove(first.indexOf(firstLow));
-            second.remove(second.indexOf(secondLow));
+        for (int i = 0; i < first.size(); i++) {
+            int num = first.get(i);
+            int count = count_occ(num, second);
+            sum+= count * num;
         }
         return sum;
     }

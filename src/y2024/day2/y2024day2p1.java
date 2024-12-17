@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-public class day2p1 {
+public class y2024day2p1 {
     private static ArrayList<String> readInput() {
         ArrayList<String> ret = new ArrayList<>();
         try(BufferedReader br = new BufferedReader(new FileReader("./src/y2024/inputs/inputDay2.txt"))) {

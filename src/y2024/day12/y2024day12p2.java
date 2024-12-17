@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-public class day12p2 {
+public class y2024day12p2 {
     private static ArrayList<ArrayList<Character>> garden;
     private static void readInput(){
         garden = new ArrayList<ArrayList<Character>>();
@@ -54,20 +54,17 @@ public class day12p2 {
         return false;
     }
 
-    private static int getPrice(Position pos){
+    private static ArrayList<Position> getConnectedPlants(Position pos){
         ArrayList<Position> visited = new ArrayList<>();
         ArrayList<Position> queue = new ArrayList<>();
 
         visited.add(pos);
         queue.add(pos);
 
-        int perimeter = 0;
         char type = getPlantAt(pos);
         while (!queue.isEmpty()){
             Position current = queue.removeFirst();
-            ArrayList<Position> neighbours = getNeighbours(current, type);
-            perimeter += 4 - neighbours.size();
-            for (Position neighbour : neighbours){
+            for (Position neighbour : getNeighbours(current, type)){
                 if (!listContainsPosition(visited, neighbour)){
                     queue.add(neighbour);
                     visited.add(neighbour);
@@ -77,12 +74,13 @@ public class day12p2 {
 
         removePlants(visited);
 
-        if (perimeter == 0) perimeter = 1;
-        int area = visited.size();
-
-        return area * perimeter;
+        return visited;
     }
 
+    private static int getPerimeter(ArrayList<Position> plants){
+        int perimeter = 0;
+        return perimeter;
+    }
 
 
     private static void printGarden(ArrayList<ArrayList<Character>> garden){
@@ -101,7 +99,10 @@ public class day12p2 {
         for (int y = 0; y < garden.size(); y++){
             for (int x = 0; x < garden.get(y).size(); x++){
                 if (garden.get(y).get(x) != '.'){
-                    price += getPrice(new Position(x, y));
+                    ArrayList<Position> plants= getConnectedPlants(new Position(x, y));
+                    int area = plants.size();
+                    int perimeter = getPerimeter(plants);
+                    price += area * perimeter;
                 }
             }
         }
