@@ -15,21 +15,23 @@ public class y2015day4 {
         return line;
     }
 
+    private static boolean checkForLeading(byte[] hash, String checkLeading) {
+        String hashAsString  = "";
+        for (byte b : hash) {
+            hashAsString += String.format("%02x", b);
+            if (hashAsString.startsWith(checkLeading)) return true;
+        }
+        return false;
+    }
+
     public static int solution() {
         String input = readInput();
         try {
             MessageDigest md5 = MessageDigest.getInstance("MD5");
             for (int i = 0; i < Integer.MAX_VALUE; i++) {
-                String key = input + Integer.toString(i);
+                String key = input + i;
                 byte[] hash = md5.digest(key.getBytes());
-                String hashAsString  = "";
-                for (byte b : hash) {
-                    hashAsString += String.format("%02x", b);
-                    if (hashAsString.startsWith("000000")) { // change leading zeors for part1/2
-                        return i;
-                    }
-                }
-                System.out.format("%s: %s\n", key, hashAsString);
+                if (checkForLeading(hash, "000000")) return i; // change leading zeors for part1/2
             }
         } catch (Exception e) {
             e.printStackTrace();
