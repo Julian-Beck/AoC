@@ -1,11 +1,5 @@
-import y2015.day1.y2015day1p1;
-import y2015.day1.y2015day1p2;
-import y2015.day2.y2015day2p1;
-import y2015.day2.y2015day2p2;
-import y2015.day3.y2015day3p1;
 import y2015.day3.y2015day3p2;
-import y2024.day1.y2024day1p1;
-import y2024.day12.y2024day12p2;
+import y2015.day4.y2015day4;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,7 +7,7 @@ public class Main {
         long startTime = System.nanoTime();
 
         // Define the day
-        String result1 = String.valueOf(y2015day3p1.solution());
+        String result1 = String.valueOf(y2015day4.solution());
 
         long endTime = System.nanoTime();
         long duration1 = (endTime - startTime) / 1_000_000;
