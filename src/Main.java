@@ -6,6 +6,8 @@ import y2015.day6.y2015day6p1;
 import y2015.day6.y2015day6p2;
 import y2015.day7.y2015day7p1;
 import y2015.day7.y2015day7p2;
+import y2015.day8.y2015day8p1;
+import y2015.day8.y2015day8p2;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,7 +15,7 @@ public class Main {
         long startTime = System.nanoTime();
 
         // Define the day
-        String result1 = String.valueOf(y2015day7p1.solution());
+        String result1 = String.valueOf(y2015day8p1.solution());
 
         long endTime = System.nanoTime();
         long duration1 = (endTime - startTime) / 1_000_000;
@@ -22,7 +24,7 @@ public class Main {
         startTime = System.nanoTime();
 
         // Define the day
-        String result2 = String.valueOf(y2015day7p2.solution());
+        String result2 = String.valueOf(y2015day8p2.solution());
 
         endTime = System.nanoTime();
         long duration2 = (endTime - startTime) / 1_000_000;
