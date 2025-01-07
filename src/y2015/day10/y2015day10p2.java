@@ -2,8 +2,12 @@ package y2015.day10;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class y2015day10p2 {
+    private static HashMap<String, String> memory = new HashMap<>();
+
     private static String readInputs(){
         try(BufferedReader br = new BufferedReader(new FileReader("./src/y2015/inputs/inputDay10.txt"))) {
             String line = br.readLine();
@@ -14,27 +18,47 @@ public class y2015day10p2 {
         return "";
     }
 
+
     private static String seeAndLook(String input) {
         String ret = "";
+        ArrayList<String> temps = new ArrayList<>();
         char[] arr = input.toCharArray();
-        char currDigit = arr[0];
 
-        int tempSum = 1;
+        char currDigit = arr[0];
+        String temp = currDigit + "";
         for (int i = 1; i < input.length(); i++) {
-            if (arr[i] == currDigit) tempSum++;
+            if (arr[i] == currDigit) temp+=arr[i];
             else {
-                ret += String.valueOf(tempSum);
-                ret += currDigit;
+                temps.add(temp);
                 currDigit = arr[i];
-                tempSum = 0;
+                temp = currDigit + "";
             }
         }
+
+        for (String nums : temps) {
+            if (memory.containsKey(nums)) {
+                ret += memory.get(nums);
+            } else {
+                String toAdd = "";
+                toAdd += String.valueOf(nums.length());
+                toAdd += nums;
+                ret += toAdd;
+                memory.put(nums, toAdd);
+            }
+        }
+        ret += String.valueOf(temp.length());
+        ret += currDigit;
         return ret;
     }
 
     public static int solution() {
         String input = readInputs();
 
-        return 0;
+        for (int i = 0; i < 50; i++) {
+            input = seeAndLook(input);
+            System.out.println(i);
+        }
+        // System.out.println(input);
+        return input.length();
     }
 }
