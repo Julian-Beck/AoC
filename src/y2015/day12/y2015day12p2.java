@@ -15,6 +15,59 @@ public class y2015day12p2 {
         return "";
     }
 
+    private static boolean inArray(String hist) {
+        return false;
+    }
+
+    private static ArrayList<String> getAllNumbersFromInputNew(String input) {
+        ArrayList<ArrayList<String>> ret = new ArrayList<>();
+        ArrayList<Integer> toDelete = new ArrayList<>();
+
+        String history = "";
+        int depth = -1;
+        String temp = "";
+        String red = "";
+        for (char c : input.toCharArray()) {
+            int i = (int)c;
+            if ((i > 47 && i < 58) || i == 45) temp += c + "";
+            else if (!temp.isEmpty()){
+                ret.get(depth).add(temp);
+                temp = "";
+            }
+
+            if (c == '{' || c == '[') {
+                depth++;
+                ret.add(new ArrayList<>());
+                history += c;
+            }
+            else if (c == '}' || c == ']') {
+                depth--;
+                history.substring(0, history.length() - 1);
+            }
+
+            if (c == 'r' || c == 'e' || c == 'd') {
+                red += c;
+            } else if (!red.isEmpty()){
+                if (red.equals("red") && history.charAt(history.length() - 1) == '{') {
+                    toDelete.add(history.length() - 1);
+                }
+                red = "";
+            }
+        }
+
+        for (int di : toDelete) {
+            ret.remove(di);
+        }
+
+        ArrayList<String> flatten = new ArrayList<>();
+
+        for (ArrayList<String> innerList : ret) {
+            flatten.addAll(innerList);
+        }
+
+        return flatten;
+    }
+
     private static ArrayList<String> getAllNumbersFromInput(String input) {
         ArrayList<String> ret = new ArrayList<>();
         ArrayList<String> tempRet = new ArrayList<>();
@@ -57,7 +110,7 @@ public class y2015day12p2 {
     public static int solution() {
         String input = readInputs();
 
-        ArrayList<String> listOfNumbers = getAllNumbersFromInput(input);
+        ArrayList<String> listOfNumbers = getAllNumbersFromInputNew(input);
 
         return listOfNumbers.stream().mapToInt(Integer::parseInt).sum();
     }
